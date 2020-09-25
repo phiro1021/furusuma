@@ -50,7 +50,6 @@ const syncLayouts = async (target) => {
     let commitList = document.getElementById('commits');
     commitList.innerHTML = '';
     commits.forEach((commit, index) => {
-        console.log(commit);
         if(index < 8) {
             let li = document.createElement('li');
             let div = document.createElement('div');
