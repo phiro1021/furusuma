@@ -1,10 +1,10 @@
-let sha = '';
+let sha = 'default';
 let commits = 0;
 let layouts = {};
-
-window.onload = ()=> {
-    layouts = getLayouts();
-    setLayouts();
+let lock = {
+    object: document.getElementById('lock'),
+    set: () => { lock.object.style.display = 'block'; },
+    release: () => { lock.object.style.display = 'none'; }
 }
 
 //レイアウトターゲットの取得
@@ -17,26 +17,43 @@ const getLayouts = () => {
     }
 }
 
-//サーバの状態を取得し、レイアウトの変更確認
-const proc = setInterval(() => {
+//gitHubのコミット状態を取得
+const getCommits = async () => {
     fetch('https://api.github.com/repos/phiro1021/public/commits')
         .then(response => response.json())
         .then(data => {
             if (commits != data.length && sha != data[0].sha) {
                 commits = data.length;
                 sha = data[0].sha;
-                setLayouts();
+                syncLayouts();
             }
         });
-}, 60 * 1000);
+}
 
 //レイアウトの適用
-const setLayouts = () => {
-    Object.keys(layouts).forEach(key => {
-        fetch('./layouts/' + key + '.html')
-            .then(response => response.text())
-            .then(data => {
-                layouts[key].innerHTML = data;
-            });
+const syncLayouts = async (target) => {
+    lock.set();
+    //レイアウト同期対象の選択
+    let targets = target == null ? Object.keys(layouts) : [target];
+    const sync = (() => {
+        targets.forEach(key => {
+            fetch('./layouts/' + key + '.html?sha=' + sha)
+                .then(response => response.text())
+                .then(data => {
+                    layouts[key].innerHTML = data;
+                });
+        });
+        return new Promise(resolve => setTimeout(resolve, 500));
     });
+    await sync();
+    lock.release();
 }
+
+window.onload = () => {
+    layouts = getLayouts();
+    getCommits();
+}
+
+//サーバの状態を取得し、レイアウトの変更確認
+const proc = setInterval(getCommits, 3600 * 1000);
+
