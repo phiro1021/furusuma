@@ -1,59 +1,17 @@
 <html>
+
 <head>
-  <meta title="振るとスマホがご機嫌になるサイト">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="apple-touch-icon" href="./icon-192.png">
-  <!-- manifest.jsonを呼び出しています -->
-  <link rel="manifest" href="./manifest.json">
-  <script>
-    // service workerが有効なら、service-worker.js を登録します
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./service-worker.js').then(function() {
-          console.log('Service Worker Registered'); 
-      });
-    }
-  </script>
+  <meta title="Phiro Page">
+  <link rel="stylesheet" type="text/css" href="./styles/main.css">
 </head>
 
-<script>
-    var x, y, z, gx, gy, gz, a, b, g, i, l;
-    var message = document.getElementById('message');
+<body>
+  <header></header>
+  <main></main>
+  <aside></aside>
+  <footer></footer>
+</body>
 
-    window.addEventListener("devicemotion", function (event) {
-        x = event.acceleration.x.toFixed(2);
-        y = event.acceleration.y.toFixed(2);
-        z = event.acceleration.z.toFixed(2);
-        gx = event.accelerationIncludingGravity.x.toFixed(2);
-        gy = event.accelerationIncludingGravity.y.toFixed(2);
-        gz = event.accelerationIncludingGravity.z.toFixed(2);
-        a = event.rotationRate.alpha.toFixed(2);
-        b = event.rotationRate.beta.toFixed(2);
-        g = event.rotationRate.gamma.toFixed(2);
-        i = event.interval.toFixed(2);
-
-        /*
-           iosとAndroidとで、向きが逆。
-           基準はどちらでも良いが、端末を上から見て、
-             x:右方向
-             y:上方向
-             z:手前方向
-            を正とするなら、iOS側を補正する。
-        */
-        // if (userAgent.indexOf("iPhone") > 0 || userAgent.indexOf("iPad") > 0 || userAgent.indexOf("iPod") > 0) {
-        //     x *= -1;
-        //     y *= -1;
-        //     z *= -1;
-        // }
-    });
-    setInterval(function () {
-        let red = ('0' + parseInt((parseFloat(gx) + 11) / 22 * 0xcc + 0x33).toString(16)).substr(-2);
-        let gre = ('0' + parseInt((parseFloat(gy) + 11) / 22 * 0xcc + 0x33).toString(16)).substr(-2);
-        let blu = ('0' + parseInt((parseFloat(gz) + 11) / 22 * 0xcc + 0x33).toString(16)).substr(-2);
-        document.body.setAttribute('style', 'background-color:#' + red + gre + blu);
-
-    }, 1000);
-
-</script>
+<script src="./scripts/main.js"></script>
 
 </html>
