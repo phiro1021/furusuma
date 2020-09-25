@@ -6,7 +6,7 @@
         --base-bg-color: rgb(130, 180, 200);
     }
     aside {
-        width: 50%;
+        width: 50vw;
         display: none;
     }
 }
@@ -17,12 +17,17 @@
         --base-bg-color: rgb(130, 180, 200);
     }
     aside {
-        width: 25%;
+        width: 25vw;
         display: block;
     }
 }
 
 /* 汎用設定 */
+
+:root {
+    --base-header-height: 10vh;
+    --base-footer-height: 10vh;
+}
 
 /* タグセレクタ */
 
@@ -30,7 +35,7 @@ html body {
     margin: 0;
     padding: 0;
     background-color: var(--base-bg-color);
-    height: 100%;
+    height: 100vh;
 }
 
 header {
@@ -38,8 +43,8 @@ header {
     z-index: 50;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 10%;
+    width: 100vw;
+    height: var(--base-header-height);
     min-height: 40px;
     text-align: center;
     background-color: var(--base-bg-color);
@@ -47,24 +52,24 @@ header {
 
 main {
     background-color: white;
-    height: 100%;
+    height: 100vh;
 }
 
 aside {
-    background-color: white;
+    background-color: azure;
     position: absolute;
     top: 0;
     right: 0;
     z-index: 25;
-    height: 100%;
+    height: 100vh;
 }
 
 footer {
     z-index: 50;
     position: absolute;
     bottom: 0;
-    width: 100%;
-    height: 15%;
+    width: 100vw;
+    height: var(--base-footer-height);
     min-height: 40px;
     text-align: center;
     background-color: var(--base-bg-color);
@@ -76,6 +81,10 @@ footer {
     display: none;
 }
 
+.header-offset {
+    height: var(--base-header-height);
+}
+
 /* IDセレクタ */
 
 #lock {
@@ -84,8 +93,8 @@ footer {
     background-position: center;
     background-image: url("../assets/loading.svg");
     background-color: white;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     z-index: 100;
     position: fixed;
     top: 0;
