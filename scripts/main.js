@@ -48,6 +48,14 @@ const syncLayouts = async (target) => {
     await sync();
     lock.release();
 }
+//レイアウトの表示
+const showLayout = async (target) => {
+    layouts[target].style.display = 'block';
+}
+//レイアウトの非表示
+const hideLayout = async (target) => {
+    layouts[target].style.display = 'none';
+}
 
 window.onload = () => {
     layouts = getLayouts();

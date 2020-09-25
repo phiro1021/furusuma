@@ -1,4 +1,12 @@
-<header>
-    header
-    <button onclick="syncLayouts('header');">更新</button>
-</header>
+<div class="wrapper">
+    <div>
+        <ul>
+            <li><a href="#">リンク</a></li>
+            <li><a href="#">リンク</a></li>
+            <li><a href="#">リンク</a></li>
+            <li><a href="#" onclick="showLayout('aside');">表示</a></li>
+            <li><a href="#" onclick="hideLayout('aside');">隠す</a></li>
+        </ul>
+    </div>
+</div>
+<button class="reflesh" onclick="syncLayouts('header');">更新</button>

@@ -1,0 +1,43 @@
+/* 画面サイズによる変更 */
+
+@media (max-width: 800px) {
+    /* 縦レイアウト */
+    header ul li {
+        width: 10%;
+    }
+}
+
+@media (min-width: 800px) {
+    /* 横レイアウト */
+    header ul li {
+        width: calc(100% / 6);
+    }
+}
+
+/* 汎用設定 */
+
+/* タグセレクタ */
+
+header ul {
+    margin: 0;
+    padding: 0;
+}
+
+header ul li {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 10 10 10 10;
+}
+
+/*
+header ul li:first-child {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../assets/loading.svg');
+}
+*/
+
+/* クラスセレクタ */
+
+/* IDセレクタ */

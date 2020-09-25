@@ -1,0 +1,35 @@
+/* 画面サイズによる変更 */
+
+@media (max-width: 800px) {
+    /* 縦レイアウト */
+    footer ul li {
+        width: 10%;
+    }
+}
+
+@media (min-width: 800px) {
+    /* 横レイアウト */
+    footer ul li {
+        width: calc(100% / 6);
+    }
+}
+
+/* 汎用設定 */
+
+/* タグセレクタ */
+
+footer ul {
+    margin: 0;
+    padding: 0;
+}
+
+footer ul li {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 10 10 10 10;
+}
+
+/* クラスセレクタ */
+
+/* IDセレクタ */
