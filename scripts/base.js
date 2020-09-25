@@ -32,7 +32,7 @@ const getCommits = async () => {
 }
 
 //レイアウトの適用
-const syncLayouts = async (target) => {
+const syncLayouts = async (target, ...params) => {
     lock.set();
     //レイアウト同期対象の選択
     let targets = target == null ? Object.keys(layouts) : [target];
@@ -50,12 +50,12 @@ const syncLayouts = async (target) => {
     let commitList = document.getElementById('commits');
     commitList.innerHTML = '';
     commits.forEach((commit, index) => {
-        if(index < 8) {
+        if (index < 8) {
             let li = document.createElement('li');
             let div = document.createElement('div');
             div.innerHTML = dateFormat(new Date(commit.commit.committer.date), 'YYYY/MM/DD') + '<br>　' + commit.commit.message;
             li.appendChild(div);
-            commitList.appendChild(li);    
+            commitList.appendChild(li);
         }
     });
     lock.release();
@@ -71,10 +71,56 @@ const hideLayout = async (target) => {
     layouts[target].style.display = 'none';
 }
 
+//レイアウトの非表示
+const switchLayout = async (target) => {
+    switch (target) {
+        case 'header':
+            if (parseInt(layouts[target].style.top) < 0) {
+                layouts[target].style.top = 0;
+            } else {
+                layouts[target].style.top = -55;
+            }
+            break;
+        case 'footer':
+            if (parseInt(layouts[target].style.bottom) < 0) {
+                layouts[target].style.bottom = 0;
+            } else {
+                layouts[target].style.bottom = -55;
+            }
+            break;
+    }
+}
+
 //イベントオブザーバ
-window.onload = () => {
-    layouts = getLayouts();
-    getCommits();
+{
+    window.onload = () => {
+        layouts = getLayouts();
+        getCommits();
+    }
+
+    let timer;
+    let count = 0;
+    //タッチ長押し検知
+    document.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        timer = setInterval(() => {
+            //長押し判定
+            if (count > 150) {
+                count = 0;
+                switchLayout('header');
+                switchLayout('footer');
+                clearInterval(timer);
+            } else {
+                count++;
+            }
+        }, 10);
+    }, { passive: false });
+
+    //タッチ長押しキャンセル
+    document.addEventListener('touchend', (e) => {
+        count = 0;
+        clearInterval(timer);
+    }, { passive: false });
 }
 
 //サーバの状態を取得し、レイアウトの変更確認
