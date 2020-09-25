@@ -38,6 +38,7 @@ html body {
     height: 100%;
     overflow: hidden;
     -webkit-text-size-adjust: 100%;
+    font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif; 
 }
 
 header {
