@@ -18,5 +18,22 @@ aside .wrapper>div {
     margin: 0;
     padding: 0 5 0 5;
 }
+aside .wrapper ul {
+    overflow: scroll;
+    height: 25%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+aside .wrapper ul li {
+    overflow: scroll;
+    height: 50px;
+}
 
 /* IDセレクタ */
+aside #hide-button {
+    position: absolute;
+    right: 0;
+    text-decoration: underline;
+    color: blue;
+}
