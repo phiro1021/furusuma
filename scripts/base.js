@@ -48,20 +48,26 @@ const syncLayouts = async (target) => {
     await sync();
     lock.release();
 }
+
 //レイアウトの表示
 const showLayout = async (target) => {
     layouts[target].style.display = 'block';
 }
+
 //レイアウトの非表示
 const hideLayout = async (target) => {
     layouts[target].style.display = 'none';
 }
 
+//イベントオブザーバ
 window.onload = () => {
     layouts = getLayouts();
     getCommits();
 }
 
 //サーバの状態を取得し、レイアウトの変更確認
-const proc = setInterval(getCommits, 3600 * 1000);
+// const proc = setInterval(getCommits, 3600 * 1000);
+const proc = setInterval(() => {
+    // console.log((new Date()).getTime());
+}, 20 / 1000);
 

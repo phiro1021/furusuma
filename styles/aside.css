@@ -14,4 +14,9 @@
 
 /* クラスセレクタ */
 
+aside .wrapper>div {
+    margin: 0;
+    padding: 0 5 0 5;
+}
+
 /* IDセレクタ */
