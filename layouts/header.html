@@ -1,10 +1,11 @@
 <div class="wrapper">
-    <div style="background-image: url('./assets/logo.png'); height: 65px;background-size: contain;background-repeat: no-repeat;">
+    <div
+        style="background-image: url('./assets/logo.png'); height: 65px;background-size: contain;background-repeat: no-repeat;">
         <ul>
-            <li>
+            <li onmouseover="mainLayoutChange('top');">
                 <div>Top</div>
             </li>
-            <li>
+            <li onmouseover="mainLayoutChange('game');">
                 <div>Game</div>
                 <ul>
                     <li>
@@ -24,7 +25,7 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li onmouseover="mainLayoutChange('tool');">
                 <div>Tool</div>
                 <ul>
                     <li>
@@ -44,7 +45,7 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li onmouseover="mainLayoutChange('blog');">
                 <div>Blog</div>
                 <ul>
                     <li>
@@ -64,7 +65,7 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li onmouseover="mainLayoutChange('info');">
                 <div onclick="showLayout('aside');">Info</div>
             </li>
         </ul>

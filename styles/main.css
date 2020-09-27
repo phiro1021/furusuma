@@ -11,12 +11,23 @@
 /* 汎用設定 */
 
 /* タグセレクタ */
+
 main {
     background-image: url('../assets/logo.png');
     background-position: left;
     background-repeat: no-repeat;
     background-size: 75%;
 }
+
 /* クラスセレクタ */
+
+.mainPage {
+    height: 100%;
+    display: none;
+    opacity: 0.1;
+}
+.mainPage:first-child {
+    display: block;
+}
 
 /* IDセレクタ */

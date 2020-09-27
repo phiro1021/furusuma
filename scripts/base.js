@@ -32,13 +32,18 @@ const getCommits = async () => {
 }
 
 //レイアウトの適用
+//params 1:対象のHTMLファイル名
 const syncLayouts = async (target, ...params) => {
     lock.set();
     //レイアウト同期対象の選択
     let targets = target == null ? Object.keys(layouts) : [target];
     const sync = (() => {
         targets.forEach(key => {
-            fetch('./layouts/' + key + '.html?sha=' + sha)
+            let page = key;
+            if (params != null && params.length > 0) {
+                page = params[0]
+            }
+            fetch('./layouts/' + page + '.html?sha=' + sha)
                 .then(response => response.text())
                 .then(data => {
                     layouts[key].innerHTML = data;
@@ -93,6 +98,18 @@ const switchLayout = async (target) => {
     }
 }
 
+//mainのレイアウト変更
+const mainLayoutChange = (mainPageName) => {
+    Array.prototype.slice.call(document.querySelectorAll('.mainPage')).forEach(page => {
+        if (page.id == mainPageName) {
+            page.style.display = 'block';
+        } else {
+            page.style.display = 'none';
+        }
+        console.log(page.style.display);
+    });
+}
+
 //イベントオブザーバ
 {
     window.onload = () => {
@@ -130,7 +147,6 @@ const switchLayout = async (target) => {
 const proc = setInterval(() => {
     // console.log('log');
 }, 20 / 1000);
-
 
 /** 日付の取得 */
 const dateFormat = (date, format) => {
