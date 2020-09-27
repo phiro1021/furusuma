@@ -106,7 +106,6 @@ const mainLayoutChange = (mainPageName) => {
         } else {
             page.style.display = 'none';
         }
-        console.log(page.style.display);
     });
 }
 
