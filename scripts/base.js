@@ -1,5 +1,5 @@
 let sha = 'default';
-let commits = {};
+let commits = [];
 let layouts = {};
 
 let lock = {
@@ -48,16 +48,18 @@ const syncLayouts = async (target, ...params) => {
     });
     await sync();
     let commitList = document.getElementById('commits');
-    commitList.innerHTML = '';
-    commits.forEach((commit, index) => {
-        if (index < 8) {
-            let li = document.createElement('li');
-            let div = document.createElement('div');
-            div.innerHTML = dateFormat(new Date(commit.commit.committer.date), 'YYYY/MM/DD') + '<br>　' + commit.commit.message;
-            li.appendChild(div);
-            commitList.appendChild(li);
-        }
-    });
+    if (commitList != null) {
+        commitList.innerHTML = '';
+        commits.forEach((commit, index) => {
+            if (index < 8) {
+                let li = document.createElement('li');
+                let div = document.createElement('div');
+                div.innerHTML = dateFormat(new Date(commit.commit.committer.date), 'YYYY/MM/DD') + '<br>　' + commit.commit.message;
+                li.appendChild(div);
+                commitList.appendChild(li);
+            }
+        });
+    }
     lock.release();
 }
 
