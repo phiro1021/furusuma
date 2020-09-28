@@ -142,10 +142,10 @@ const mainLayoutChange = (mainPageName) => {
 }
 
 //サーバの状態を取得し、レイアウトの変更確認
-// const proc = setInterval(getCommits, 3600 * 1000);
 const proc = setInterval(() => {
-    // console.log('log');
 }, 20 / 1000);
+
+/** 以下、Util */
 
 /** 日付の取得 */
 const dateFormat = (date, format) => {
@@ -168,3 +168,147 @@ const dateFormat = (date, format) => {
     format = format.replace(/s/g, date.getSeconds());
     return format;
 }
+
+const uuid = () => {
+    let chars = [];
+    for (let i = 0; i < 36; i++) {
+        switch (i) {
+            case 8:
+            case 13:
+            case 18:
+            case 23:
+                chars.push('-');
+                break;
+            case 14:
+                chars.push('4');
+                break;
+            case 19:
+                chars.push((Math.floor(Math.random() * (11 + 1 - 8)) + 8).toString(16).toUpperCase());//8-9A-B
+                break;
+            default:
+                chars.push((Math.floor(Math.random() * (15 + 1 - 0)) + 0).toString(16).toUpperCase());//0-9A-F
+                break;
+        }
+    }
+    return chars.join('');
+}
+
+//uuidの取得
+window.id = localStorage.getItem("uuid");
+if (window.id == null) {
+    localStorage.setItem('uuid', uuid());
+}
+
+/** 暗号化 */
+const encrypto = (async (inputString) => {
+    try {
+        let password = (new TextEncoder()).encode('password');
+        let salt = (new TextEncoder().encode(''));
+        let iv = (new TextEncoder().encode('0000000000000000'));
+        let inputData = (new TextEncoder()).encode(inputString);
+
+        let digest = await crypto.subtle.digest(
+            { name: 'SHA-256' },
+            password
+        );
+        let keyMaterial = await crypto.subtle.importKey(
+            'raw',
+            digest,
+            { name: 'PBKDF2' },
+            false,
+            ['deriveKey']
+        );
+        let secretKey = await crypto.subtle.deriveKey(
+            {
+                name: 'PBKDF2',
+                salt,
+                iterations: 100000,
+                hash: 'SHA-256'
+            },
+            keyMaterial,
+            { name: 'AES-GCM', length: 256 },
+            true,
+            ['encrypt', 'decrypt']
+        );
+        let encryptedArrayBuffer = await crypto.subtle.encrypt(
+            {
+                name: 'AES-GCM',
+                iv
+            },
+            secretKey,
+            inputData
+        );
+        let encryptedBytes = Array.from(new Uint8Array(encryptedArrayBuffer), char => String.fromCharCode(char)).join('');
+        let encryptedBase64String = btoa(encryptedBytes);
+        return new Promise((resolve, reject) => {
+            resolve(encryptedBase64String);
+        });
+    } catch {
+        return new Promise((resolve, reject) => {
+            reject();
+        });
+    }
+});
+
+/** 復号化 */
+const decrypto = (async (encryptedBase64String) => {
+    try {
+        let password = (new TextEncoder()).encode('password');
+        let salt = (new TextEncoder().encode(''));
+        let iv = (new TextEncoder().encode('0000000000000000'));
+        let encryptedBytes = atob(encryptedBase64String);
+        let encryptedData = Uint8Array.from(encryptedBytes.split(''), char => char.charCodeAt(0));
+
+        let digest = await crypto.subtle.digest(
+            { name: 'SHA-256' },
+            password
+        );
+        let keyMaterial = await crypto.subtle.importKey(
+            'raw',
+            digest,
+            { name: 'PBKDF2' },
+            false,
+            ['deriveKey']
+        );
+        let secretKey = await crypto.subtle.deriveKey(
+            {
+                name: 'PBKDF2',
+                salt,
+                iterations: 100000,
+                hash: 'SHA-256'
+            },
+            keyMaterial,
+            { name: 'AES-GCM', length: 256 },
+            true,
+            ['encrypt', 'decrypt']
+        );
+        let decryptedArrayBuffer = await crypto.subtle.decrypt(
+            {
+                name: 'AES-GCM',
+                iv
+            },
+            secretKey,
+            encryptedData
+        );
+        let decryptedString = (new TextDecoder()).decode(new Uint8Array(decryptedArrayBuffer));
+        return new Promise((resolve, reject) => {
+            resolve(decryptedString);
+        });
+    } catch (e) {
+        return new Promise((resolve, reject) => {
+            resolve(e);
+        });
+    }
+});
+
+(async () => {
+    let enc;
+    let dec;
+    await encrypto('enc').then((a) => {
+        enc = a;
+    });
+    await decrypto(enc/*'u67CyvXkkMH/4n+0SewkmWzzLg=='*/).then((a) => {
+        dec = a;
+    });
+})();
+
