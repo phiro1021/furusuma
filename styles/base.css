@@ -3,7 +3,7 @@
 @media (max-width: 800px) {
     /* 縦レイアウト */
     :root {
-        --base-bg-color: rgb(130, 180, 200);
+        --base-bg-color: rgb(255, 255, 255);
     }
     aside {
         width: 50%;
@@ -14,7 +14,7 @@
 @media (min-width: 800px) {
     /* 横レイアウト */
     :root {
-        --base-bg-color: rgb(130, 180, 200);
+        --base-bg-color: rgb(255, 255, 255);
     }
     aside {
         width: 25%;
@@ -35,6 +35,7 @@ html body {
     margin: 0;
     padding: 0;
     background-color: var(--base-bg-color);
+    color: var(--base-bg-color);
     height: 100%;
     overflow: hidden;
     -webkit-text-size-adjust: 100%;

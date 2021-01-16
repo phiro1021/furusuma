@@ -12,20 +12,29 @@
 
 /* タグセレクタ */
 
+html {
+    overflow: hidden !important;
+}
+
 main {
     background-image: url('../assets/logo.png');
-    background-position: left;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: 75%;
 }
 
 /* クラスセレクタ */
 
+.blur {
+    filter: blur(5px);
+}
+
 .mainPage {
     height: 100%;
     display: none;
     opacity: 0.1;
 }
+
 .mainPage:first-child {
     display: block;
 }
