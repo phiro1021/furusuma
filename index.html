@@ -7,11 +7,7 @@
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.128.png" />
   <link rel="apple-touch-icon" type="image/svg+xml" sizes="180x180" href="./assets/loading.svg">
   <link rel="icon" type="image/svg+xml" sizes="192x192" href="./assets/loading.svg">
-  <link rel="stylesheet" type="text/css" href="./styles/base.css?v=5">
-  <link rel="stylesheet" type="text/css" href="./styles/header.css?v=0">
-  <link rel="stylesheet" type="text/css" href="./styles/main.css?v=0">
-  <link rel="stylesheet" type="text/css" href="./styles/aside.css?v=6">
-  <link rel="stylesheet" type="text/css" href="./styles/footer.css?v=1">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v=0">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
@@ -24,10 +20,6 @@
       <v-overlay absolute :value="overlay" z-index="10" color="#FFFFFF">
       </v-overlay>
       <v-app-bar app flat class="light-blue lighten-5">
-        <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-        <v-spacer></v-spacer>
-        <v-card>
-        </v-card>
         <v-spacer></v-spacer>
         <v-menu left bottom>
           <template v-slot:activator="{ on, attrs }">
@@ -42,62 +34,73 @@
           </v-list>
         </v-menu>
       </v-app-bar>
-      <v-navigation-drawer permanent expand-on-hover z-index="100">
+      <v-navigation-drawer app permanent expand-on-hover z-index="100">
         <v-list nav dense>
-          <v-list-item link @click="changeMain('aboutMe')">
-            <v-list-item-icon>
-              <v-icon>mdi-alert-circle-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>ABOUT ME</v-list-item-title>
-          </v-list-item link>
+          <router-link to="/about" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-alert-circle-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>ABOUT ME</v-list-item-title>
+            </v-list-item>
+          </router-link>
           <v-divider></v-divider>
-          <v-list-item link @click="changeMain('work')">
-            <v-list-item-icon>
-              <v-icon>mdi-home-city-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>WORK</v-list-item-title>
-          </v-list-item link>
-          <v-list-item link @click="changeMain('game')">
-            <v-list-item-icon>
-              <v-icon>mdi-gamepad-variant-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>GAME</v-list-item-title>
-          </v-list-item link>
-          <v-list-item link @click="changeMain('tool')">
-            <v-list-item-icon>
-              <v-icon>mdi-toolbox-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>TOOL</v-list-item-title>
-          </v-list-item link>
-          <v-list-item link @click="changeMain('blog')">
-            <v-list-item-icon>
-              <v-icon>mdi-book-open-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>BLOG</v-list-item-title>
-          </v-list-item>
-          <v-divider></v-divider>
-          <v-list-item link @click="changeMain('help')">
-            <v-list-item-icon>
-              <v-icon>mdi-help-circle-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>HELP</v-list-item-title>
-          </v-list-item link>
+          <router-link to="/work" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-home-city-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>WORK</v-list-item-title>
+            </v-list-item>
+          </router-link>
+          <router-link to="/game" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-gamepad-variant-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>GAME</v-list-item-title>
+            </v-list-item>
+          </router-link>
+          <router-link to="/tool" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-toolbox-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>TOOL</v-list-item-title>
+            </v-list-item>
+          </router-link>
+          <router-link to="/blog" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-book-open-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>BLOG</v-list-item-title>
+            </v-list-item>
+            <v-divider></v-divider>
+          </router-link>
+          <router-link to="/help" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-help-circle-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>HELP</v-list-item-title>
+            </v-list-item>
+          </router-link>
         </v-list>
       </v-navigation-drawer>
       <v-main>
-        <v-container fluid v-if="pages.aboutMe.visible"></v-container>
-        <v-container fluid v-if="pages.work.visible"></v-container>
-        <v-container fluid v-if="pages.game.visible"></v-container>
-        <v-container fluid v-if="pages.tool.visible"></v-container>
-        <v-container fluid v-if="pages.blog.visible"></v-container>
-        <v-container fluid v-if="pages.help.visible"></v-container>
+        <v-container fluid>
+          <router-view></router-view>
+        </v-container>
       </v-main>
       <v-footer padless app class="light-blue lighten-5" align-with-title>
         <v-card-text>
           <v-btn class="mx-4" icon link href="https://twitter.com/Phiro1021" target="_blank">
             <v-icon size="24px"> mdi-twitter </v-icon>
           </v-btn>
-          <v-btn class="mx-4" icon link href="https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link" target="_blank">
+          <v-btn class="mx-4" icon link
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link"
+            target="_blank">
             <v-icon size="24px"> mdi-gmail </v-icon>
           </v-btn>
           <v-btn class="mx-4" icon link href="https://atelierent.jp/" target="_blank">
@@ -108,36 +111,10 @@
     </v-app>
   </div>
 </body>
-
-<!-- <script src="./scripts/base.js?v=3"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-<script>
-  new Vue({
-    el: '#app',
-    vuetify: new Vuetify(),
-    data: () => ({
-      drawer: null,
-      overlay: false,
-      aboutMe: false,
-      pages: {
-        aboutMe: { title: 'ABOUT ME', visible: false },
-        work: { title: 'WORK', visible: false },
-        game: { title: 'GAME', visible: false },
-        tool: { title: 'TOOL', visible: false },
-        blog: { title: 'BLOG', visible: false },
-        help: { title: 'HELP', visible: false },
-      }
-    }),
-    methods: {
-      changeMain: function (name) {
-        Object.keys(this.pages).forEach((page) => {
-          this.pages[page].visible = false;
-        });
-        this.pages[name].visible = true;
-      }
-    }
-  })
-</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/main.js" async></script>
 
 </html>
