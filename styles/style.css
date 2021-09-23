@@ -1,0 +1,66 @@
+/* 画面サイズによる変更 */
+
+@media (max-width: 800px) {
+}
+
+@media (min-width: 800px) {
+}
+/* 汎用設定 */
+:root {
+    --base-bg-color: rgb(255, 255, 255);
+}
+
+/* タグセレクタ */
+
+html {
+  overflow: hidden !important;
+  
+}
+
+html body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--base-bg-color);
+  color: var(--base-bg-color);
+  height: 100%;
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+main {
+  background-color: white;
+  height: 100%;
+  background-image: url("../assets/logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 75%;
+}
+
+aside {
+  background-color: azure;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 25;
+  height: 100%;
+}
+
+footer {
+  z-index: 50;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: var(--base-footer-height);
+  min-height: 40px;
+  text-align: center;
+  background-color: var(--base-bg-color);
+  transition-property: bottom;
+  transition-duration: 0.8s;
+  transition-timing-function: ease;
+}
+
+i {
+  font-size: 24px;
+}
