@@ -1,12 +1,12 @@
 const init = async () => {
   //Vue templates
   let templates = [
-    { name: 'about-main', template: null, url: '/component/about.html' },
-    { name: 'work-main', template: null, url: '/component/work.html' },
-    { name: 'game-main', template: null, url: '/component/game.html' },
-    { name: 'tool-main', template: null, url: '/component/tool.html' },
-    { name: 'blog-main', template: null, url: '/component/blog.html' },
-    { name: 'help-main', template: null, url: '/component/help.html' }
+    { name: 'about-main', template: null, url: './component/about.html' },
+    { name: 'work-main', template: null, url: './component/work.html' },
+    { name: 'game-main', template: null, url: './component/game.html' },
+    { name: 'tool-main', template: null, url: './component/tool.html' },
+    { name: 'blog-main', template: null, url: './component/blog.html' },
+    { name: 'help-main', template: null, url: './component/help.html' }
   ];
   const getTemplate = (name) => {
     return templates.find((template) => {
