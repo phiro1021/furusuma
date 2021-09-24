@@ -12,17 +12,11 @@
 
 /* タグセレクタ */
 
-html {
-  overflow: hidden !important;
-}
-
 html body {
   margin: 0;
   padding: 0;
   background-color: var(--base-bg-color);
   color: var(--base-bg-color);
-  height: 100%;
-  overflow: hidden;
   -webkit-text-size-adjust: 100%;
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
@@ -30,11 +24,11 @@ html body {
 
 main {
   background-color: white;
-  height: 100%;
   background-image: url("../assets/logo.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 75%;
+  padding-bottom: var(--base-footer-height);
 }
 
 aside {
