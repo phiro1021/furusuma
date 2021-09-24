@@ -7,14 +7,13 @@
 }
 /* 汎用設定 */
 :root {
-    --base-bg-color: rgb(255, 255, 255);
+  --base-bg-color: rgb(255, 255, 255);
 }
 
 /* タグセレクタ */
 
 html {
   overflow: hidden !important;
-  
 }
 
 html body {
@@ -63,4 +62,14 @@ footer {
 
 i {
   font-size: 24px;
+}
+
+.flex {
+  flex-grow: 0;
+}
+
+.flex-empty {
+  height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
