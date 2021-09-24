@@ -1,21 +1,7 @@
 const init = async () => {
-  //Vue templates
-  let templates = [
-    { name: 'about-main', template: null, url: './component/about.html' },
-    { name: 'work-main', template: null, url: './component/work.html' },
-    { name: 'game-main', template: null, url: './component/game.html' },
-    { name: 'tool-main', template: null, url: './component/tool.html' },
-    { name: 'blog-main', template: null, url: './component/blog.html' },
-    { name: 'help-main', template: null, url: './component/help.html' }
-  ];
-  const getTemplate = (name) => {
-    return templates.find((template) => {
-      return template.name == name;
-    });
-  };
 
   await Promise.all(templates.map(async template => {
-    await axios.get(template.url, {
+    await axios.get(template.template_url, {
       headers: {
         "Content-Type": "	text/html"
       },
@@ -23,8 +9,10 @@ const init = async () => {
     })
       .then((result) => {
         template.template = {
-          props: ['id'],
-          template: result.data
+          template: result.data,
+          props: template.props,
+          data: template.data,
+          methods: template.methods,
         }
       })
       .catch(function (e) {
@@ -51,6 +39,7 @@ const init = async () => {
     data: () => ({
       drawer: null,
       overlay: false,
+      dialog: false,
     }),
     methods: {
       goBack() {
