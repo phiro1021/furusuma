@@ -26,6 +26,7 @@ const init = async () => {
     { path: '/work', component: getTemplate('work-main').template, props: true },
     { path: '/game', component: getTemplate('game-main').template, props: true, },
     { path: '/tool', component: getTemplate('tool-main').template, props: true, },
+    { path: '/movie', component: getTemplate('movie-main').template, props: true, },
     { path: '/blog', component: getTemplate('blog-main').template, props: true, },
     { path: '/help', component: getTemplate('help-main').template, props: true, }
   ];
