@@ -93,6 +93,31 @@ let templates = [
     },
   },
   {
+    name: 'movie-main',
+    template: null,
+    template_url: './component/movie.html',
+    props: ['id'],
+    data: function () {
+      return {
+        dialog: false,
+        objects: Array.from([
+          { title: '高校の怪談 CM', href: 'https://www.youtube.com/watch?v=3SzkdKBkP_k' },
+          { title: '高校の怪談 主題歌 MV', href: 'https://www.youtube.com/watch?v=y1_9mx3DZ1c' },
+          { title: '高校の怪談 another S MV', href: 'https://www.youtube.com/watch?v=HJ1XFjfHd54' },
+        ]).map((e, i) => ({
+          num: i + 1,
+          title: e.title,
+          href: e.href
+        })),
+      }
+    },
+    methods: {
+      hoge: function (e) {
+        alert('hoge');
+      }
+    },
+  },
+  {
     name: 'blog-main',
     template: null,
     template_url: './component/blog.html',
