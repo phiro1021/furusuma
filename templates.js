@@ -7,7 +7,14 @@ let templates = [
     props: ['id'],
     data: function () {
       return {
-        dialog: false
+        dialog: false,
+        objects: Array.from([
+          { title: 'About Me', href: '' },
+        ]).map((e, i) => ({
+          num: i + 1,
+          title: e.title,
+          href: e.href
+        })),
       }
     },
     methods: {
@@ -23,7 +30,14 @@ let templates = [
     props: ['id'],
     data: function () {
       return {
-        dialog: false
+        dialog: false,
+        objects: Array.from([
+          { title: '仕事内容', href: '' },
+        ]).map((e, i) => ({
+          num: i + 1,
+          title: e.title,
+          href: e.href
+        })),
       }
     },
     methods: {
@@ -39,7 +53,14 @@ let templates = [
     props: ['id'],
     data: function () {
       return {
-        dialog: false
+        dialog: false,
+        objects: Array.from([
+          { title: 'ぼくの自由研究所web', href: 'https://kids-labo.atelierent.jp/' },
+        ]).map((e, i) => ({
+          num: i + 1,
+          title: e.title,
+          href: e.href
+        })),
       }
     },
     methods: {
@@ -55,7 +76,14 @@ let templates = [
     props: ['id'],
     data: function () {
       return {
-        dialog: false
+        dialog: false,
+        objects: Array.from([
+          { title: '日曜運営局', href: 'https://sun.atelierent.jp' },
+        ]).map((e, i) => ({
+          num: i + 1,
+          title: e.title,
+          href: e.href
+        })),
       }
     },
     methods: {
@@ -71,7 +99,14 @@ let templates = [
     props: ['id'],
     data: function () {
       return {
-        dialog: false
+        dialog: false,
+        objects: Array.from([
+          { title: 'Qiita', href: 'https://qiita.com/phiro1021' },
+        ]).map((e, i) => ({
+          num: i + 1,
+          title: e.title,
+          href: e.href
+        })),
       }
     },
     methods: {
@@ -87,7 +122,14 @@ let templates = [
     props: ['id'],
     data: function () {
       return {
-        dialog: false
+        dialog: false,
+        objects: Array.from([
+          { title: 'このページについて', href: '' },
+        ]).map((e, i) => ({
+          num: i + 1,
+          title: e.title,
+          href: e.href
+        })),
       }
     },
     methods: {
