@@ -17,7 +17,6 @@ html body {
   padding: 0;
   background-color: var(--base-bg-color);
   color: var(--base-bg-color);
-  height: 100%;
   -webkit-text-size-adjust: 100%;
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
@@ -25,7 +24,6 @@ html body {
 
 main {
   background-color: white;
-  height: 100%;
   background-image: url("../assets/logo.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -39,7 +37,6 @@ aside {
   top: 0;
   right: 0;
   z-index: 25;
-  height: 100%;
 }
 
 footer {
