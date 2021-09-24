@@ -37,6 +37,7 @@ aside {
   top: 0;
   right: 0;
   z-index: 25;
+  height: 100%;
 }
 
 footer {
