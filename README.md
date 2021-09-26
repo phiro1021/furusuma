@@ -24,7 +24,7 @@ Overview
 
 ## Licence
 
-[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
+[MIT](https://github.com/phiro1021/public/blob/master/LICENSE)
 
 ## Author
 
