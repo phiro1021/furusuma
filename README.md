@@ -29,3 +29,12 @@ Overview
 ## Author
 
 [Phiro](https://github.com/Phiro1021)
+
+## デバッグ実行
+
+ローカルでの動作確認は以下を実施
+
+1. リポジトリをクローン
+2. cd public
+3. npm update
+4. node_modules/http-server/bin/http-server
